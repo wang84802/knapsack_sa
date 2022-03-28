@@ -1,5 +1,5 @@
 # pseudocode
-# while(T < T_min)
+# while(T > T_min)
 #     x = 隨意設定一個取法
 #     loop:
 #        任意找一個鄰居y (可能高可能低)
@@ -106,11 +106,6 @@ while t > t_min:
     # 生成random bit string
     res_v, init_key = rand_key(items)
     take_step_key = init_key
-        
-    # 紀錄最大值&最大值之string
-    if max_v < res_v:
-        max_v = res_v
-        max_v_key = take_step_key
 
     list_plot.append(max_v)
     iter += 1
@@ -127,6 +122,11 @@ while t > t_min:
         # 新價值較高 or 有機率允許改變
         if res > 0 or np.exp(-res/k*t) > np.random.rand():
             take_step_key = take_step_key_new
+
+    # 紀錄最大值&最大值之string
+    if max_v < res_v:
+        max_v = res_v
+        max_v_key = take_step_key
 
     t = t*eta
 
